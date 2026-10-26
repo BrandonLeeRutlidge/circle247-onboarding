@@ -367,10 +367,32 @@ h2.title{font-family:'Fredoka',ui-rounded,system-ui,sans-serif;font-weight:600;c
 .chipbtn{background:#fff;border:none;border-radius:999px;padding:10px 16px;min-height:44px;font-family:'Fredoka',ui-rounded,system-ui,sans-serif;font-weight:500;font-size:15px;color:var(--teal);box-shadow:var(--shc);cursor:pointer}
 .linkbtn{background:none;border:none;font-family:'Fredoka',ui-rounded,system-ui,sans-serif;font-weight:500;font-size:15px;color:var(--ink-soft);text-decoration:underline;padding:10px 4px;min-height:44px;cursor:pointer}
 
-/* Silent SOS illustration, and a gentle three-burst shake when practising */
 .sosv svg{width:min(94cqw,calc(98cqh * .94));height:auto;display:block}
-.sosv.practise svg{animation:buzz3 1.6s linear}
-@keyframes buzz3{0%,4%,8%,12%,34%,38%,42%,46%,68%,72%,76%,80%{transform:translateX(-3px)}2%,6%,10%,36%,40%,44%,70%,74%,78%{transform:translateX(3px)}14%,32%,48%,66%,82%,100%{transform:none}}
+/* Silent SOS: the buttons press up, up, down with their labels, then the phone buzzes three times three times over
+   and the alert lands. One 6.5s loop; with reduced motion everything simply shows at once. */
+.sosart{overflow:visible}
+.sosart .sv-btn,.sosart .sv-c,.sosart .sv-card,.sosart .sv-b{transform-box:fill-box;transform-origin:center}
+.sosart .sv-phone{transform-box:view-box;transform-origin:198px 170px;animation:svShake 6.5s infinite}
+.sosart .sv-up{animation:svUp 6.5s infinite}
+.sosart .sv-down{animation:svDown 6.5s infinite}
+.sosart .sv-lup{animation:svLup 6.5s infinite}
+.sosart .sv-ldown{animation:svLdown 6.5s infinite}
+.sosart .sv-b{animation:svFlash 6.5s infinite}
+.sosart .sv-card{animation:svCard 6.5s infinite}
+.sosart .sv-d1{animation:svD1 6.5s infinite}
+.sosart .sv-d2{animation:svD2 6.5s infinite}
+.sosart .sv-d3{animation:svD3 6.5s infinite}
+.sosv.restart .sosart *{animation:none!important}
+@keyframes svUp{0%,7.680000000000001%,13.549999999999999%,19.99%,25.860000000000003%,100%{transform:none;fill:#05475E}7.69%,13.54%,20.0%,25.85%{transform:translateX(3.5px);fill:#F089A9}}
+@keyframes svDown{0%,32.300000000000004%,38.16%,100%{transform:none;fill:#05475E}32.31%,38.15%{transform:translateX(3.5px);fill:#F089A9}}
+@keyframes svLup{0%{opacity:0;transform:translateX(-8px) scale(.9)}7.680000000000001%{opacity:0;transform:translateX(-8px) scale(.9)}8.92%{opacity:1;transform:none}14.77%{opacity:1;transform:none}17.23%{opacity:0;transform:translateX(-4px)}19.99%{opacity:0;transform:translateX(-8px) scale(.9)}21.23%{opacity:1;transform:none}27.08%{opacity:1;transform:none}29.54%{opacity:0;transform:translateX(-4px)}100%{opacity:0}}
+@keyframes svLdown{0%{opacity:0;transform:translateX(-8px) scale(.9)}32.300000000000004%{opacity:0;transform:translateX(-8px) scale(.9)}33.54%{opacity:1;transform:none}39.38%{opacity:1;transform:none}41.85%{opacity:0;transform:translateX(-4px)}100%{opacity:0}}
+@keyframes svShake{0%{transform:none}46.14%{transform:none}46.62%{transform:translateX(-4px) rotate(-1.6deg)}47.54%{transform:translateX(4px) rotate(1.6deg)}48.46%{transform:translateX(-4px) rotate(-1.6deg)}49.38%{transform:translateX(4px) rotate(1.6deg)}50.31%{transform:translateX(-4px) rotate(-1.6deg)}51.23%{transform:translateX(4px) rotate(1.6deg)}51.69%{transform:none}55.370000000000005%{transform:none}55.85%{transform:translateX(-4px) rotate(-1.6deg)}56.77%{transform:translateX(4px) rotate(1.6deg)}57.69%{transform:translateX(-4px) rotate(-1.6deg)}58.62%{transform:translateX(4px) rotate(1.6deg)}59.54%{transform:translateX(-4px) rotate(-1.6deg)}60.46%{transform:translateX(4px) rotate(1.6deg)}60.92%{transform:none}64.61%{transform:none}65.08%{transform:translateX(-4px) rotate(-1.6deg)}66.0%{transform:translateX(4px) rotate(1.6deg)}66.92%{transform:translateX(-4px) rotate(-1.6deg)}67.85%{transform:translateX(4px) rotate(1.6deg)}68.77%{transform:translateX(-4px) rotate(-1.6deg)}69.69%{transform:translateX(4px) rotate(1.6deg)}70.15%{transform:none}100%{transform:none}}
+@keyframes svFlash{0%{opacity:0}46.14%{opacity:0}46.15%{opacity:1}51.69%{opacity:1}51.699999999999996%{opacity:0}55.370000000000005%{opacity:0}55.38%{opacity:1}60.92%{opacity:1}60.93%{opacity:0}64.61%{opacity:0}64.62%{opacity:1}70.15%{opacity:1}70.16000000000001%{opacity:0}100%{opacity:0}}
+@keyframes svCard{0%,46.14%{opacity:0;transform:translateY(10px)}50.0%,92.31%{opacity:1;transform:none}96.92%,100%{opacity:0;transform:none}}
+@keyframes svD1{0%,46.14%{opacity:.22}46.15%,92.31%{opacity:1}96.92%,100%{opacity:.22}}
+@keyframes svD2{0%,55.370000000000005%{opacity:.22}55.38%,92.31%{opacity:1}96.92%,100%{opacity:.22}}
+@keyframes svD3{0%,64.61%{opacity:.22}64.62%,92.31%{opacity:1}96.92%,100%{opacity:.22}}
 
 .toast{position:absolute;left:50%;bottom:calc(var(--inset-bottom) + 132px);translate:-50% 10px;max-width:86%;background:var(--ink);color:#fff;font-family:'Fredoka',ui-rounded,system-ui,sans-serif;font-weight:500;font-size:14.5px;text-align:center;padding:10px 18px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .25s,translate .25s;z-index:20;box-shadow:var(--sh)}
 .toast.on{opacity:1;translate:-50% 0}

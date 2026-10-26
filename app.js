@@ -165,7 +165,9 @@ var fc=t.closest('.face');if(fc){[].forEach.call(fc.parentNode.querySelectorAll(
 var ct=t.closest('.contact');if(ct){ct.classList.toggle('s');syncInvites();syncAria();return;}
 var tg=t.closest('.toggle');if(tg){tg.classList.toggle('on');syncAria();return;}
 var pl=t.closest('.plan');if(pl){[].forEach.call(pl.parentNode.querySelectorAll('.plan'),function(x){x.classList.remove('s');});pl.classList.add('s');syncAria();return;}
-if(t.closest('[data-practise]')){var v=secs[cur].querySelector('.sosv');if(v){v.classList.remove('practise');void v.offsetWidth;v.classList.add('practise');}
+// Practise it: replay the press-and-buzz sequence from the start (and buzz for real where the phone allows)
+if(t.closest('[data-practise]')){var v=t.closest('.screen').querySelector('.sosv');
+if(v){if(v.getAnimations)v.getAnimations({subtree:true}).forEach(function(a){a.currentTime=0;a.play();});else{v.classList.add('restart');void v.offsetWidth;v.classList.remove('restart');}}
 if(navigator.vibrate)navigator.vibrate([90,70,90,70,90,320,90,70,90,70,90,320,90,70,90,70,90]);toast("That's it. Nothing was sent.");return;}
 if(t.closest('[data-paste]')){var mi=document.getElementById('mCode');
 if(navigator.clipboard&&navigator.clipboard.readText)navigator.clipboard.readText().then(function(x){mi.value=x.trim().slice(0,7);paintCode();},function(){toast('Copy the code from Messages first');});else toast('Copy the code from Messages first');return;}
