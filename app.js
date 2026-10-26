@@ -114,12 +114,18 @@ var bar=secs[cur].querySelector('.progress>i');if(bar){var p=pct(cur);bar.style.
 var c=secs[cur].querySelector('.content');if(c)c.scrollTop=0;
 if(stage.contains(document.activeElement)||document.activeElement===document.body)secs[cur].focus({preventScroll:true});
 if(timer){clearInterval(timer);timer=null;}if(finishT){clearTimeout(finishT);finishT=null;}if(cur==='s-building')runLoader();}
-function runLoader(){var n=0,el=document.getElementById('loadN'),arc=document.getElementById('loadArc');buildBuild();var cls=secs['s-building'].querySelectorAll('.cl');
+// The loader works in bursts and pauses, like real set-up work, rather than one steady crawl.
+// Each step: [reach this %, over this many ms (fast start, easing off), then hold for this many ms]. About 7 seconds in all.
+var LOADSTEPS=[[18,600,300],[27,700,450],[49,550,150],[61,800,550],[79,600,200],[90,800,400],[96,450,200],[100,350,0]];
+function loadAt(ms){var from=0,t=0;for(var i=0;i<LOADSTEPS.length;i++){var s=LOADSTEPS[i];
+if(ms<t+s[1]){var k=(ms-t)/s[1];return from+(s[0]-from)*(1-Math.pow(1-k,3));}t+=s[1];
+if(ms<t+s[2])return s[0];t+=s[2];from=s[0];}return 100;}
+function runLoader(){var n=0,start=Date.now(),el=document.getElementById('loadN'),arc=document.getElementById('loadArc');buildBuild();var cls=secs['s-building'].querySelectorAll('.cl');
 function paint(){if(el)el.textContent=Math.round(n)+'%';if(arc)arc.style.strokeDashoffset=100-n;}paint();
-timer=setInterval(function(){n+=1.55;if(n>100)n=100;paint();
+timer=setInterval(function(){n=loadAt(Date.now()-start);paint();
 cls.forEach(function(c,i){if(n>=(i+1)/cls.length*100)c.classList.add('done');});
 // the finished loader replaces its own history entry, so Back from "Your circle's set up" skips it rather than re-running it
-if(n>=100){clearInterval(timer);timer=null;finishT=setTimeout(function(){finishT=null;if(cur!=='s-building')return;trail.length=pos;trail.push('s-ready');cur='s-ready';render();},800);}},95);}
+if(n>=100){clearInterval(timer);timer=null;finishT=setTimeout(function(){finishT=null;if(cur!=='s-building')return;trail.length=pos;trail.push('s-ready');cur='s-ready';render();},800);}},30);}
 function goto(id){
 // Done and Start again rewind history to the first screen instead of stacking a finished flow behind it
 if(id==='s-welcome'&&pos>0){if(useHist){history.go(-pos);return;}trail=['s-welcome'];pos=0;cur=id;render();return;}
@@ -186,6 +192,14 @@ if(t.classList.contains('otherin')){t.blur();return;}
 if(i>-1&&i<ins.length-1)ins[i+1].focus();else{t.blur();next();}return;}
 if((e.key==='Enter'||e.key===' ')&&t.matches&&t.matches(TAP)){e.preventDefault();t.click();}});
 buildPeople();names();render();
+// When the phone keyboard opens, size the app to the space above it so the fields and the button stay reachable and the screen
+// can scroll; then bring the field being typed in to the middle. Pinch-zoom is left alone.
+var vv=window.visualViewport,root=document.documentElement;
+function fitViewport(){if(vv.scale>1.01){root.style.removeProperty('--vvh');root.style.removeProperty('--vvt');}
+else{root.style.setProperty('--vvh',vv.height+'px');root.style.setProperty('--vvt',vv.offsetTop+'px');}fitFooter();}
+if(vv){vv.addEventListener('resize',fitViewport);vv.addEventListener('scroll',fitViewport);fitViewport();}
+stage.addEventListener('focusin',function(e){var t=e.target;if(t.tagName!=='INPUT')return;
+setTimeout(function(){if(document.activeElement===t)t.scrollIntoView({block:'center'});},350);});
 
 // Desktop only: a QR code of this page so people can carry on on their phone
 var scan=document.getElementById('scan'),qrBox=document.getElementById('qr');

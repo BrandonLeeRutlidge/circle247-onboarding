@@ -15,7 +15,8 @@ button{font:inherit;-webkit-appearance:none;appearance:none}
 @keyframes breathe{from{transform:scale(1)}to{transform:scale(1.045)}}
 
 /* The device. On a phone it is the whole screen: no frame, no fake status bar. */
-.device{position:fixed;inset:0;background:var(--cream)}
+/* --vvh/--vvt follow the visible area, so when the keyboard opens the app shrinks above it and the screen can scroll */
+.device{position:fixed;left:0;right:0;top:var(--vvt,0px);height:var(--vvh,100%);background:var(--cream)}
 .app{position:relative;width:100%;height:100%;overflow:hidden;background:var(--gc)}
 .screen{position:absolute;inset:0;display:none;flex-direction:column;background:var(--gc);padding-top:var(--inset-top)}
 .screen.on{display:flex;animation:in .4s ease}
@@ -106,7 +107,7 @@ h2.title{font-family:'Fredoka',ui-rounded,system-ui,sans-serif;font-weight:600;c
 /* the bar floats over the content with a soft fade, so long lists slide under it instead of being sliced off */
 .footer{position:absolute;left:0;right:0;bottom:0;z-index:5;padding:34px max(26px,calc(50% - 234px)) var(--inset-bottom);display:flex;flex-direction:column;gap:9px;background:linear-gradient(to top,#FCE9F1 calc(100% - 34px),rgba(252,233,241,0))}
 .footer:has(.cta){min-height:calc(34px + 54px + 9px + 40px + var(--inset-bottom))}
-.content{padding-bottom:calc(var(--fh,150px) + 4px)}
+.content{padding-bottom:calc(var(--fh,150px) + 4px);scroll-padding:12px 0 calc(var(--fh,150px) + 12px)}
 .cta{font-family:'Fredoka',ui-rounded,system-ui,sans-serif;font-weight:500;font-size:17px;color:#fff;background:var(--gt);border:none;border-radius:999px;padding:16px 22px;min-height:54px;cursor:pointer;text-align:center;box-shadow:0 10px 24px rgba(3,88,124,.22);transition:transform .18s,box-shadow .18s,opacity .2s}
 .cta.ghost{background:transparent;color:var(--ink-soft);box-shadow:none;font-size:16px;padding:9px;min-height:40px}
 .cta:disabled{background:#F3D9E2;color:var(--ink);cursor:default;box-shadow:none}
