@@ -36,7 +36,7 @@ c.innerHTML=rels().map(function(r){var nm=nameOf(r)||'Them';
 return '<div class="cperson"><span class="cav">'+esc(initial(nm))+'</span><div class="cpi"><div class="cpn">'+esc(nm)+'</div><div class="cps">Invite sent · pending</div></div><span class="cdot pend"></span></div>';}).join('');}
 function buildContacts(){var c=document.getElementById('contactRows');if(!c)return;
 c.innerHTML=rels().map(function(r){var nm=nameOf(r);
-return '<div class="contact s" tabindex="0" role="button"><span class="av">'+esc(Array.from(nm).slice(0,2).join('').toUpperCase())+'</span><div><div class="nm">'+esc(nm)+'</div><div class="rl">You\'re inviting</div></div><span class="add">✓</span></div>';}).join('');}
+return '<div class="contact s" tabindex="0" role="button"><span class="av">'+esc(Array.from(nm).slice(0,2).join('').toUpperCase())+'</span><div><div class="nm">'+esc(nm)+'</div><div class="rl">You\'re inviting</div></div><span class="add"></span></div>';}).join('');}
 function buildMap(){var c=document.getElementById('payMap');if(!c)return;
 var rs=rels(),pins=c.querySelectorAll('.mpin');
 [].forEach.call(pins,function(p,i){p.style.display=rs[i]?'':'none';if(rs[i])p.querySelector('.mav').textContent=initial(nameOf(rs[i]));});}
@@ -89,7 +89,7 @@ var op=t.closest('.opt');
 if(op){if(op.closest('[data-relsingle]')){[].forEach.call(op.parentNode.querySelectorAll('.opt'),function(x){x.classList.remove('s');});op.classList.add('s');syncCta();syncAria();return;}
 if(op.closest('[data-multi]')||op.closest('[data-catmulti]')||op.closest('[data-relmulti]')){op.classList.toggle('s');syncCta();syncAria();return;}}
 var fc=t.closest('.face');if(fc){var p=fc.parentNode;[].forEach.call(p.querySelectorAll('.face'),function(x){x.classList.remove('s');});fc.classList.add('s');syncAria();return;}
-var ct=t.closest('.contact');if(ct){ct.classList.toggle('s');var a=ct.querySelector('.add');if(a)a.textContent=ct.classList.contains('s')?'✓':'+';syncAria();return;}
+var ct=t.closest('.contact');if(ct){ct.classList.toggle('s');var a=ct.querySelector('.add');if(a)a.textContent=ct.classList.contains('s')?'':'+';syncAria();return;}
 var tg=t.closest('.toggle');if(tg){tg.classList.toggle('on');syncAria();return;}
 var pl=t.closest('.plan');if(pl){var pp=pl.parentNode;[].forEach.call(pp.querySelectorAll('.plan'),function(x){x.classList.remove('s');});pl.classList.add('s');syncAria();return;}
 var g=t.closest('[data-goto]');if(g){goto(g.getAttribute('data-goto'));return;}
