@@ -15,6 +15,8 @@ button{font:inherit;-webkit-appearance:none;appearance:none}
 .app{position:relative;width:100%;height:100%;overflow:hidden;background:var(--gc)}
 .screen{position:absolute;inset:0;display:none;flex-direction:column;background:var(--gc);padding-top:var(--inset-top)}
 .screen.on{display:flex;animation:in .4s ease}
+/* a portrait tablet is mobile too: the app fills the screen but its content keeps a phone-like width */
+.topbar,.content{width:100%;max-width:520px;margin-left:auto;margin-right:auto}
 .chrome,.backdrop,.brand,.scan{display:none}
 .scan[hidden]{display:none!important}
 
@@ -27,8 +29,9 @@ button{font:inherit;-webkit-appearance:none;appearance:none}
 .bat::before{content:"";position:absolute;right:-3px;top:3px;width:2px;height:5px;background:var(--ink);border-radius:0 1px 1px 0}
 .home-ind{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:126px;height:5px;border-radius:999px;background:rgba(5,71,94,.28)}
 
-/* Wider than a phone: the app stays phone sized and the brand fills the space around it */
-@media (min-width:520px){
+/* Desktop or mobile is decided by shape, not size: wider than tall (near 16:9) is desktop, taller than wide (near 9:16) is mobile.
+   On desktop the app stays phone sized and the brand fills the space around it */
+@media (min-aspect-ratio:1/1){
 body{display:grid;place-items:center;background:var(--gc)}
 .device{position:relative;inset:auto;width:min(430px,100%);height:100vh;height:100dvh;box-shadow:0 0 70px rgba(3,88,124,.16)}
 .backdrop{--ph:100vh;display:block;position:fixed;inset:0;overflow:hidden;pointer-events:none}
@@ -37,8 +40,8 @@ body{display:grid;place-items:center;background:var(--gc)}
 .ripple.r2{animation-delay:2.4s}
 @keyframes ripple{0%{transform:scale(1);opacity:.55}100%{transform:scale(1.9);opacity:0}}
 }
-/* Desktop with room for a whole phone: draw the handset */
-@media (min-width:520px) and (min-height:640px) and (hover:hover) and (pointer:fine){
+/* Desktop tall enough for a whole phone: draw the handset (shorter ones, like a phone on its side, keep the plain column) */
+@media (min-aspect-ratio:1/1) and (min-height:640px){
 :root{--inset-top:36px;--inset-bottom:28px}
 .device{width:416px;height:min(870px,calc(100vh - 48px));height:min(870px,calc(100dvh - 48px));padding:13px;border-radius:56px;background:var(--bezel);box-shadow:0 30px 70px rgba(3,88,124,.28)}
 .app{border-radius:43px}
@@ -46,7 +49,7 @@ body{display:grid;place-items:center;background:var(--gc)}
 .backdrop{--ph:min(870px,calc(100vh - 48px))}
 }
 /* Room either side: the logo and tagline on the left, a QR code on the right */
-@media (min-width:1080px) and (min-height:640px) and (hover:hover) and (pointer:fine){
+@media (min-aspect-ratio:1/1) and (min-width:1080px) and (min-height:640px){
 .brand::before,.scan::before{content:"";position:absolute;inset:-60px -56px;z-index:-1;background:radial-gradient(closest-side,rgba(254,247,249,.94) 62%,rgba(254,247,249,0))}
 .brand{isolation:isolate;display:block;position:fixed;left:clamp(32px,5vw,80px);top:50%;transform:translateY(-50%);width:min(400px,calc(50vw - 208px - clamp(32px,5vw,80px) - 48px))}
 .logo{display:block;width:168px;height:auto;margin-bottom:26px}
@@ -98,7 +101,7 @@ h2.title{font-family:'Fredoka',ui-rounded,system-ui,sans-serif;font-weight:600;c
 .face .fl{font-family:'Fredoka',ui-rounded,system-ui,sans-serif;font-weight:500;font-size:12px;color:var(--ink);line-height:1.2}
 .face.s{border-color:var(--teal);background:rgba(3,88,124,.05)}
 /* bottom padding clears the iPhone home bar on real phones */
-.footer{padding:13px 26px var(--inset-bottom);display:flex;flex-direction:column;gap:9px;background:linear-gradient(0deg,rgba(254,247,249,.98),rgba(254,247,249,0))}
+.footer{padding:13px max(26px,calc(50% - 234px)) var(--inset-bottom);display:flex;flex-direction:column;gap:9px;background:linear-gradient(0deg,rgba(254,247,249,.98),rgba(254,247,249,0))}
 .cta{font-family:'Fredoka',ui-rounded,system-ui,sans-serif;font-weight:500;font-size:17px;color:#fff;background:var(--gt);border:none;border-radius:999px;padding:16px 22px;cursor:pointer;text-align:center;box-shadow:0 10px 24px rgba(3,88,124,.22);transition:transform .18s,box-shadow .18s}
 .cta.pink{background:var(--gp);color:var(--ink);box-shadow:0 10px 24px rgba(240,137,169,.32)}
 .cta:disabled{opacity:.4;cursor:default;box-shadow:none;transform:none}

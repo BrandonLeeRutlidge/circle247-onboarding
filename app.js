@@ -108,7 +108,7 @@ buildPeople();names();render();
 
 // Desktop only: a QR code of this page so people can carry on on their phone
 var scan=document.getElementById('scan'),qrBox=document.getElementById('qr');
-if(scan&&qrBox&&window.matchMedia){var mq=window.matchMedia('(min-width:1080px) and (min-height:640px) and (hover:hover) and (pointer:fine)');
+if(scan&&qrBox&&window.matchMedia){var mq=window.matchMedia('(min-aspect-ratio:1/1) and (min-width:1080px) and (min-height:640px)');
 function drawQR(){var q=window.qrcode(0,'M');q.addData(location.href.split('#')[0]);q.make();
 var n=q.getModuleCount(),d='';for(var r=0;r<n;r++)for(var c=0;c<n;c++)if(q.isDark(r,c))d+='M'+c+' '+r+'h1v1h-1z';
 qrBox.innerHTML='<svg viewBox="0 0 '+n+' '+n+'" shape-rendering="crispEdges" role="img" aria-label="QR code for this page"><path fill="#05475E" d="'+d+'"/></svg>';scan.hidden=false;}
