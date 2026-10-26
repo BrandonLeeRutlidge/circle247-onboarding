@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 340" role="img" aria-label="Press volume up, up, then down">
+  <rect x="87" y="86" width="46" height="6" rx="3" fill="#F4A8BE"/>
+  <rect x="87" y="124" width="46" height="6" rx="3" fill="#F4A8BE"/>
+  <rect x="87" y="179" width="46" height="6" rx="3" fill="#F4A8BE"/>
+  <rect x="129" y="76" width="16" height="64" rx="8" fill="#F089A9"/>
+  <rect x="129" y="154" width="16" height="56" rx="8" fill="#F089A9"/>
+  <rect x="137" y="12" width="152" height="282" rx="34" fill="#05475E"/>
+  <rect x="147" y="22" width="132" height="262" rx="24" fill="#FEF7F9"/>
+  <rect x="194" y="32" width="38" height="12" rx="6" fill="#05475E"/>
+  <circle cx="213" cy="110" r="40" fill="#FCE8F1"/>
+  <circle cx="213" cy="110" r="27" fill="#F9DAE6"/>
+  <path d="M214.6 121.4Q213 122.7 211.4 121.4C205.2 116.5 200 112 200 106.8C200 102.2 203.4 99 207 99C209.9 99 212 100.6 213 102.9C214 100.6 216.1 99 219 99C222.6 99 226 102.2 226 106.8C226 112 220.8 116.5 214.6 121.4Z" fill="#F089A9"/>
+  <rect x="153" y="187" width="120" height="58" rx="15" fill="#F6DCE7"/>
+  <rect x="153" y="184" width="120" height="58" rx="15" fill="#FFFFFF"/>
+  <circle cx="173" cy="204" r="11" fill="#03587C"/>
+  <circle cx="173" cy="204" r="6.8" fill="#F089A9"/>
+  <circle cx="173" cy="204" r="4.7" fill="#03587C"/>
+  <text x="191" y="209.1" font-family="Fredoka, ui-rounded, sans-serif" font-weight="600" font-size="14.5" fill="#05475E">SOS sent</text>
+  <text x="162" y="230" font-family="Fredoka, ui-rounded, sans-serif" font-weight="500" font-size="12" fill="#3d6b82">Your circle knows</text>
+  <rect x="189" y="275" width="48" height="4.5" rx="2.2" fill="#3d6b82"/>
+  <rect x="31" y="73" width="62" height="32" rx="16" fill="#F089A9"/>
+  <text x="53" y="95.4" font-family="Fredoka, ui-rounded, sans-serif" font-weight="600" font-size="18" fill="#05475E" text-anchor="middle">1</text>
+  <path d="M72.8 86Q74 83.9 75.2 86L79.3 92.8Q80.5 94.9 78.1 94.9L69.9 94.9Q67.5 94.9 68.7 92.8Z" fill="#05475E"/>
+  <rect x="31" y="111" width="62" height="32" rx="16" fill="#F089A9"/>
+  <text x="53" y="133.4" font-family="Fredoka, ui-rounded, sans-serif" font-weight="600" font-size="18" fill="#05475E" text-anchor="middle">2</text>
+  <path d="M72.8 124Q74 121.9 75.2 124L79.3 130.8Q80.5 132.9 78.1 132.9L69.9 132.9Q67.5 132.9 68.7 130.8Z" fill="#05475E"/>
+  <rect x="31" y="166" width="62" height="32" rx="16" fill="#F089A9"/>
+  <text x="53" y="188.4" font-family="Fredoka, ui-rounded, sans-serif" font-weight="600" font-size="18" fill="#05475E" text-anchor="middle">3</text>
+  <path d="M75.2 185Q74 187.1 72.8 185L68.7 178.2Q67.5 176.1 69.9 176.1L78.1 176.1Q80.5 176.1 79.3 178.2Z" fill="#05475E"/>
+  <circle cx="136" cy="322" r="5.5" fill="#F089A9"/>
+  <circle cx="151" cy="322" r="5.5" fill="#F089A9"/>
+  <circle cx="166" cy="322" r="5.5" fill="#F089A9"/>
+  <circle cx="198" cy="322" r="5.5" fill="#F089A9"/>
+  <circle cx="213" cy="322" r="5.5" fill="#F089A9"/>
+  <circle cx="228" cy="322" r="5.5" fill="#F089A9"/>
+  <circle cx="260" cy="322" r="5.5" fill="#F089A9"/>
+  <circle cx="275" cy="322" r="5.5" fill="#F089A9"/>
+  <circle cx="290" cy="322" r="5.5" fill="#F089A9"/>
+</svg>
